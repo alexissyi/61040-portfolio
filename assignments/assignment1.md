@@ -106,6 +106,8 @@ Problem 3.3: Hoarding clothes that I don't really like anymore. I have a lot of 
 
 3. [Measurement-based care: A transformative approach to treatment](https://www.apa.org/monitor/2025/01/measurement-based-care-transforms-treatment). This article discusses how at least in psychological treatment, regular check-ins on certain metrics can help treatment.
 
+4. [Monitoring Treatment Progress and Providing Feedback is Viewed Favorably but Rarely Used in Practice](https://pmc.ncbi.nlm.nih.gov/articles/PMC5495625/). This article discusses how measuring treatment effectiveness over time is both clinically effective and positively viewed by clinicians but not actually used.
+
 ## Features
 
 ### Problem 1: WILG Cooking Calendar
