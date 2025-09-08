@@ -56,27 +56,27 @@ Problem 3.3: Hoarding clothes that I don't really like anymore. I have a lot of 
 
 ### Problem 1: WILG Cooking Calendar
 
-1. WILG Food Stewards: the two members of WILG Exec who are in charge of creating a cooking calendar, assigning cooks, and ordering groceries.
+1. WILG Food Stewards: the two members of WILG Exec who are in charge of creating a cooking calendar, assigning cooks, and ordering groceries. Any automation of their task could make their task easier; a more customized UI (in comparison to Google Sheets) could also make their task easier and reduce the amount of time they spend on their role obligations. Learning a UI or software could also be a barrier though.
 
-2. WILG Cooks: the residents of WILG who are assigned to cook on WILG's cooking calendar.
+2. WILG Cooks: the residents of WILG who are assigned to cook on WILG's cooking calendar. A more customized UI could make it easier to add ingredients and reduce procrastination time, reducing the chance that they miss their ingredient deadline and have to buy ingredients themselves. Learning a new UI could also be a barrier like above.
 
-3. WILG Residents: individuals who are automatically on WILG's meal plan and eat dinners from the WILG calendar.
+3. WILG Residents: individuals who are automatically on WILG's meal plan and eat dinners from the WILG calendar. Automation of the cooking schedule and ingredient collection could mean more complex dinners are possible, or reduce the amount of times dinner is late or has other problems, like not properly accommodating restrictions.
 
 ### Problem 2: WILG Chores
 
-1. WILG Jobs House Manager: the member of WILG Exec who is in charge of assigning chores, tracking chores, and calculating missed chore fines.
+1. WILG Jobs House Manager: the member of WILG Exec who is in charge of assigning chores, tracking chores, and calculating missed chore fines. Similar impacts to the food stewards in the previous problem. Automation and more customized UI could make their job faster and easier, but could be onerous to learn a new software.
 
-2. WILG Treasurer: the member of WILG Exec who issues bills to collect fines.
+2. WILG Treasurer: the member of WILG Exec who issues bills to collect fines. There might not be much impact, since the treasurer doesn't calculate the fines themselves. Having one known place where the fines are could make it easier for them to find them at the end of the semester, rather than having to communicate with the house manager.
 
-3. WILG Residents: individuals who are obligated to complete a certain number of chores in WILG.
+3. WILG Residents: individuals who are obligated to complete a certain number of chores in WILG. Having one centralized place to track chores could make keeping track of their own missed chores easier, but could also be onerous to learn a new software.
 
 ### Problem 3: Treatment Tracker
 
-1. Individuals w/ Health Concerns: people who have health complaints of any kind.
+1. Individuals w/ Health Concerns: people who have health complaints of any kind. A treatment tracker could help them identify what does and does not work with them; they could share this info with providers for better care. However, this kind of sensitive data would also be at risk for data breaches, which could be really dangerous.
 
-2. Healthcare Providers: clinicians who treat people with various health complaints.
+2. Healthcare Providers: clinicians who treat people with various health complaints. A treatment tracker could help them quickly understand what their patient has already tried, and allow them to rule those treatments out. However, if the treatments are tracked by patients, the patient's lack of expertise could skew the information included and make it misleading.
 
-3. Healthcare Researchers: researchers who investigate the effectiveness of certain treatments and the causes of certain symptoms and ailments.
+3. Healthcare Researchers: researchers who investigate the effectiveness of certain treatments and the causes of certain symptoms and ailments. A treatment tracker could help them identify similarities across multiple patients and lead to breakthroughs in treatment and understanding. However, if the tracker relies on self-input, the data could be questionable.
 
 ## Evidence
 
