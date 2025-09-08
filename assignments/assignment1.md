@@ -28,9 +28,9 @@ Most promising domains: WILG administration, tracking health problems, tracking 
 
 ### Domain 1: WILG administration
 
-\*\* Problem 1.1: Filling in cooking ingredients and collating them. Currently we just use a gigantic spreadsheet to assign cooks and fill in ingredients that's kind of unwieldy to use. Our food steward also have to manually collate all the ingredients to figure out what to order. \*\*
+**Problem 1.1: Filling in cooking ingredients and collating them. Currently we just use a gigantic spreadsheet to assign cooks and fill in ingredients that's kind of unwieldy to use. Our food steward also have to manually collate all the ingredients to figure out what to order.**
 
-\*\* Problem 1.2: Assigning and tracking chore completion. This is done via a Google form and witnessing system that our house managers have to manually track and collect every month. Missed chores result in fines, but these fines increase exponentially, not linearly. People also can swap chores, which has to be tracked manually. \*\*
+**Problem 1.2: Assigning and tracking chore completion. This is done via a Google form and witnessing system that our house managers have to manually track and collect every month. Missed chores result in fines, but these fines increase exponentially, not linearly. People also can swap chores, which has to be tracked manually.**
 
 Problem 1.3: Assigning rooms. We do this manually as well, and this involves sending emails at regular intervals to every person in the house. Sometimes we have to re-do the whole process when new information about accommodations or preferences come out, which is really annoying.
 
@@ -40,7 +40,7 @@ Problem 2.1: Tracking symptom development and evolution. I tend to just do this 
 
 Problem 2.2: Collating clinical opinions. I've seen multiple clinicians for health problems in the past, but usually just track what they say in my head. I have no centralized place to keep them.
 
-\*\* Problem 2.3: Tracking treatments and effectiveness. Sometimes I try different treatments but forget that I have or don't remember the exact effects. \*\*
+**Problem 2.3: Tracking treatments and effectiveness. Sometimes I try different treatments but forget that I have or don't remember the exact effects.**
 
 ### Domain 3: Clothes, fashion and style
 
