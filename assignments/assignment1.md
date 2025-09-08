@@ -82,9 +82,29 @@ Problem 3.3: Hoarding clothes that I don't really like anymore. I have a lot of 
 
 ### Problem 1: WILG Cooking Calendar
 
+1. [Paprika](https://www.paprikaapp.com/). A meal-planning app that allows for ingredient collating, linking of recipes, and scheduling meals. Good for an individual, but not super compatible with WILG's cooking system, which involves specific distinctions between ingredients and also involves assigning different people to different days.
+
+2. [Meal planning is associated with food variety, diet quality and body weight status in a large sample of French adults](https://pmc.ncbi.nlm.nih.gov/articles/PMC5288891/). This article discusses how meal planning, at least on an individual basis, improves health metrics for adults.
+
+3. [Kooka Cooking Community](https://www.kookacommunity.com/). A meal-planning/recipe-planning website that allows for scheduling and ingredient collection. Has similar limitations to Paprika.
+
 ### Problem 2: WILG Chores
 
+1. [OurHome](http://ourhomeapp.com/). A family chore tracking app that allows families to track chores and assigns points to those who complete their chores. Good for a family, but not super compatible with WILG, which is a 30+ member community with very specific chores that come with specific time frames. This app also does not have chore swapping or fine tracking.
+
+2. [Communal Intimacy: Formalization, Egalitarianism, and Exchangeability in Collective Housing](https://academic.oup.com/sf/article/100/1/273/5933783?login=true). This research paper discusses how communal living tends to demand egalitarianism in the distribution of chores and tasks in comparison to family living, and that this egalitarianism actually contributes to communal intimacy.
+
+3. [Co-Housing to Ease and Share Household Chores? Spatial Visibility and Collective Deliberation as Levers for Gender Equality](https://www.mdpi.com/2075-5309/11/5/189) This research paper discusses how in one investigation into co-housing projects in Brussels, egalitarian distribution of chores within a shared communal living space can ease burdens on individuals and allow women to lead more socially and politically engaged lives.
+
+4. [Why Communal Living Can Make Us Happier](https://www.bbc.com/culture/article/20240429-why-living-with-strangers-can-make-us-happier). This article discusses how communal living systems that involve chore schedules and cooking plans or other modes of shared responsibility can help provide community and alleviate burdens.
+
 ### Problem 3: Treatment Tracker
+
+1. [Treatment Tracker App](https://careclinic.io/treatment-tracker/). An app that mainly tracks pharmaceutical and supplement treatments.
+
+2. [Wave Health: Symptom Tracker](https://www.wavehealth.app/). An app that tracks symptoms, medications, mood and other things like physical activity and water intake. Might be overloaded with different features, but seems to encompass everything necessary for the problem.
+
+3. [Measurement-based care: A transformative approach to treatment](https://www.apa.org/monitor/2025/01/measurement-based-care-transforms-treatment). This article discusses how at least in psychological treatment, regular check-ins on certain metrics can help treatment.
 
 ## Features
 
