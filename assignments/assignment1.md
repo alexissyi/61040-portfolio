@@ -80,4 +80,34 @@ Problem 3.3: Hoarding clothes that I don't really like anymore. I have a lot of 
 
 ## Evidence
 
+### Problem 1: WILG Cooking Calendar
+
+### Problem 2: WILG Chores
+
+### Problem 3: Treatment Tracker
+
 ## Features
+
+### Problem 1: WILG Cooking Calendar
+
+1. A calendar UI where the food stewards can enter names to assign cooks, so they can do it in one page instead of having to flip through a bunch of spreadsheet tabs.
+
+2. Clickable calendar squares that navigate to a day-specific ingredients page that cooks can fill out for their cooking day. This also reduces the need to flip through a bunch of spreadsheet tabs.
+
+3. An automatic recipe scaler that allows cooks to copy a recipe for fewer people directly, which then gets scaled to serve 30-35 people (or however many people are currently living in WILG). This reduces the amount of time it takes to add ingredients for cooks.
+
+### Problem 2: WILG Chores
+
+1. A public hours tracker that automatically tracks how many chores everybody has completed. This allows WILG residents to understand how many hours they owe and also verify that their hours are being tracked accurately. This also reduces the need for the house manager to manually track and enter hours.
+
+2. A form for people to submit their hours. This could be tied to an account, so a person could maybe just click a button rather than having to enter their information into a Google form every time.
+
+3. A witness request system where people can request a witness from another person in the house, and that person will then approve the witness request. This could reduce witness fraud, where a person records someone as a witness who actually hasn't witnessed it.
+
+### Problem 3: Treatment Tracker
+
+1. A dashboard with all the ailments a person has, separated into categories. This could help an individual get an overall picture of their health problems also.
+
+2. For each ailment, a list of treatments. This helps an individual get a sense of what they've tried.
+
+3. For each treatment, a page of the details of that treatment, like when it occurred, what it involved, who provided it, the effects, etc.
