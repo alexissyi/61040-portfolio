@@ -73,4 +73,35 @@ authenticate (username: String, password: String): (user: User)
 
 ## Exercise 3
 
+**concept** PersonalAccessToken
+**purpose** limit access to known users and allow for access customization
+**principle** after a user registers with a username and then uploads a set of tokens for specific resources, they can be authenticated for each resource independently and be treated for each resource as the same user across multiple accesses
+**state**
+
+a set of Users with
+
+- a Username
+- a set of Tokens
+
+a set of Tokens with
+
+- a Resource
+- a TokenPassword
+- an AccessLevel (READ, WRITE, or ADMIN)
+
+**actions**
+register (username: String): (user: User)
+**requires** no User with the same username already exists in the set
+**effects** creates a new User with the given username and an empty set of Tokens
+
+addToken (username: String, resource: Resource, tokenPassword: String, accessLevel: String)
+**requires** a User with the given username exists in the set and does not have a Token for the given resource already associated with it
+**effects** adds a Token with the given resource, tokenPassword, and accessLevel to the set of Tokens for the User with the given username
+
+authenticate (username: String, resource: Resource, tokenPassword: String, accessLevel: String): (user: User)
+**requires** a User with the given username exists in the set and has a Token associated with it for the given resource and accessLevel with the same tokenPassword
+**effects** returns the User with the given username that has a Token for the given resource and accessLevel with the same tokenPassword
+
+The main difference between the PersonalAccessToken concept and the Password concept is that the PersonalAccessToken concept allows for multiple tokens to be attributed to the same user for access to different resources, with varying levels of access, while the Password concept links a user to a single resource.
+
 ## Exercise 4
