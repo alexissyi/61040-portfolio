@@ -2,9 +2,9 @@
 
 1. Invariant 1: for any Request, the count requested is nonnegative (request.number >= 0)
 
-Invariant 2: every Purchase is for an Item within the set of Requests
+   Invariant 2: every Purchase is for an Item within the set of Requests
 
-Invariant 2 is most important. The whole point of a gift registry is so that you only get the gifts that you actually want. The action most affected by this invariant is the "purchase" action; this action preserves the invariant by requiring that the Item to be purchased has a requested amount that is at least the amount we're attempting to purchase. By definition this requires the Item to be in the set of Requests.
+   Invariant 2 is most important. The whole point of a gift registry is so that you only get the gifts that you actually want. The action most affected by this invariant is the "purchase" action; this action preserves the invariant by requiring that the Item to be purchased has a requested amount that is at least the amount we're attempting to purchase. By definition this requires the Item to be in the set of Requests.
 
 2. The "removeItem" action could potentially break Invariant 2. This happens if some Purchases are made for an Item, then the registry owner removes that Item. This problem can be fixed if the removeItem action requires that no Purchases have been made for an Item before it can be removed.
 
@@ -42,34 +42,28 @@ Invariant 2 is most important. The whole point of a gift registry is so that you
 3. The essential invariant is that no two Users have the same Username or the same Password. This is preserved by the requirement for the register action.
 
 4. The extended concept is below:
+   **concept** Password Authentication
+   **purpose** limit access to known users
+   **principle** after a user registers with a username and a password, they can authenticate with that same username and password and be treated each time as the same user
+   **state**
+   a set of Users with
 
-**concept** Password Authentication
+   - a Username
+   - a Password
+   - a valid Email
+   - a confirmation token SecretToken
+   - a flag Confirmed
 
-**purpose** limit access to known users
-
-**principle** after a user registers with a username and a password, they can authenticate with that same username and password and be treated each time as the same user
-
-**state**
-a set of Users with
-
-- a Username
-- a Password
-- a valid Email
-- a confirmation token SecretToken
-- a flag Confirmed
-
-**actions**
-register (username: String, password: String, email: String): (user: User, secretToken: String)
-**requires** no other User with this username or this password exists in the set
-**effects** generates a secret registration token and emails it to the given email, creates a new User with this username, password, email, secret token, and a default Confirmed flag set to False, then adds this new User to the set of Users and returns the User and the token
-
-confirm (username: String, secretToken: String): (user: User)
-**requires** a User with this username and secretToken exists in the set
-**effects** locates the User with the given username and secretToken, sets the User's Confirmed flag to True and returns the User
-
-authenticate (username: String, password: String): (user: User)
-**requires** a User with this username and password exists in the set
-**effects** returns the User with the same username and password
+   **actions**
+   register (username: String, password: String, email: String): (user: User, secretToken: String)
+   **requires** no other User with this username or this password exists in the set
+   **effects** generates a secret registration token and emails it to the given email, creates a new User with this username, password, email, secret token, and a default Confirmed flag set to False, then adds this new User to the set of Users and returns the User and the token
+   confirm (username: String, secretToken: String): (user: User)
+   **requires** a User with this username and secretToken exists in the set
+   **effects** locates the User with the given username and secretToken, sets the User's Confirmed flag to True and returns the User
+   authenticate (username: String, password: String): (user: User)
+   **requires** a User with this username and password exists in the set
+   **effects** returns the User with the same username and password
 
 ## Exercise 3
 
@@ -105,3 +99,9 @@ authenticate (username: String, resource: Resource, tokenPassword: String, acces
 The main difference between the PersonalAccessToken concept and the Password concept is that the PersonalAccessToken concept allows for multiple tokens to be attributed to the same user for access to different resources, with varying levels of access, while the Password concept links a user to a single resource.
 
 ## Exercise 4
+
+### Concept 1: URL Shortener
+
+### Concept 2: Billable Hours Tracking
+
+### Concept 3: Conference Room Booking
