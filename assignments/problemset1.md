@@ -31,20 +31,29 @@
 2. The completed actions specification is below:
 
    **actions**
+
    register (username: String, password: String): (user: User)
+
    **requires** no other User with this username or this password exists
+
    **effects** creates a new User with this username and password and adds it to the set of Users, then returns it
 
    authenticate (username: String, password: String): (user: User)
+
    **requires** a User with this username and password exists in the set
+
    **effects** returns the User with the same username and password
 
 3. The essential invariant is that no two Users have the same Username or the same Password. This is preserved by the requirement for the register action.
 
 4. The extended concept is below:
+
    **concept** Password Authentication
+
    **purpose** limit access to known users
+
    **principle** after a user registers with a username and a password, they can authenticate with that same username and password and be treated each time as the same user
+
    **state**
    a set of Users with
 
@@ -55,21 +64,32 @@
    - a flag Confirmed
 
    **actions**
+
    register (username: String, password: String, email: String): (user: User, secretToken: String)
+
    **requires** no other User with this username or this password exists in the set
+
    **effects** generates a secret registration token and emails it to the given email, creates a new User with this username, password, email, secret token, and a default Confirmed flag set to False, then adds this new User to the set of Users and returns the User and the token
+
    confirm (username: String, secretToken: String): (user: User)
+
    **requires** a User with this username and secretToken exists in the set
+
    **effects** locates the User with the given username and secretToken, sets the User's Confirmed flag to True and returns the User
    authenticate (username: String, password: String): (user: User)
+
    **requires** a User with this username and password exists in the set
+
    **effects** returns the User with the same username and password
 
 ## Exercise 3
 
 **concept** PersonalAccessToken
+
 **purpose** limit access to known users and allow for access customization
+
 **principle** after a user registers with a username and then uploads a set of tokens for specific resources, they can be authenticated for each resource independently and be treated for each resource as the same user across multiple accesses
+
 **state**
 
 a set of Users with
@@ -84,16 +104,23 @@ a set of Tokens with
 - an AccessLevel (READ, WRITE, or ADMIN)
 
 **actions**
+
 register (username: String): (user: User)
+
 **requires** no User with the same username already exists in the set
+
 **effects** creates a new User with the given username and an empty set of Tokens
 
 addToken (username: String, resource: Resource, tokenPassword: String, accessLevel: String)
+
 **requires** a User with the given username exists in the set and does not have a Token for the given resource already associated with it
+
 **effects** adds a Token with the given resource, tokenPassword, and accessLevel to the set of Tokens for the User with the given username
 
 authenticate (username: String, resource: Resource, tokenPassword: String, accessLevel: String): (user: User)
+
 **requires** a User with the given username exists in the set and has a Token associated with it for the given resource and accessLevel with the same tokenPassword
+
 **effects** returns the User with the given username that has a Token for the given resource and accessLevel with the same tokenPassword
 
 The main difference between the PersonalAccessToken concept and the Password concept is that the PersonalAccessToken concept allows for multiple tokens to be attributed to the same user for access to different resources, with varying levels of access, while the Password concept links a user to a single resource.
