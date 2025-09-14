@@ -228,7 +228,7 @@ endSession(employeeID: String, endTime: Time)
 
 a set of Rooms with
 
-- a set of Reservations
+- a RoomNumber
 - a MaxCapacity
 - a MinCapacity
 
@@ -236,7 +236,7 @@ a set of Reservations with
 
 - a Room
 - a Timeslot
-- a person making the reservation ReservationHolder
+- a person making the reservation User
 - a count of attendees Attendance
 
 a TimeSlot with
@@ -246,17 +246,23 @@ a TimeSlot with
 
 **actions**
 
-createRoom(room: Room)
+createRoom(roomNumber: String, minCapacity: int, maxCapacity: int)
 
-**requires**
+**requires** no other Room with the same roomNumber exists, minCapacity and maxCapacity are both nonnegative integers and maxCapacity >= minCapacity
 
-**effects**
+**effects** creates a new Room with roomNumber, minCapacity, maxCapacity
 
-reserveRoom(reservationHolder: ReservationHolder, room: Room, timeslot: TimeSlot)
+reserveRoom(user: User, roomNumber: String, timeslot: TimeSlot, attendance: int)
 
-**requires**
+**requires** a Room exists with the given roomNumber, the room's minCapacity <= attendance <= the room's maxCapacity, and no other Reservation for that Room has an overlapping timeslot
 
-**effects**
+**effects** creates a new Reservation for that Room with the given roomNumber, user, timeslot and attendance
+
+cancelReservation(user: User, room: Room, timeslot: TimeSlot)
+
+**requires** a Reservation exists with the given user, room and timeslot
+
+**effects** deletes that Reservation
 
 ### Notes
 
