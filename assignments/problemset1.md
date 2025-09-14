@@ -129,6 +129,54 @@ The main difference between the PersonalAccessToken concept and the Password con
 
 ### Concept 1: URL Shortener
 
+**concept** URLShortener
+
+**purpose** turn long URLs into short URLs
+
+**principle** a user can upload a long URL and get a more readable short URL that points to the same page
+
+**state**
+a set of ShortenedURLS with
+
+- an original LongURL
+- a ShortURL
+- a Suffix
+
+**actions**
+
+generateSuffix(): (suffix: String)
+
+**requires** nothing
+
+**effects** automatically generates a URL suffix and returns it
+
+shortenURL(longURL: String, suffix: String)
+
+**requires** no ShortenedURL exists with the given longURL and a shortURL with the given suffix
+
+**effects** generate a shorter URL (thirty characters or less) with the provided suffix and create a new ShortenedURL with the suffix, new ShortURL and the given LongURL
+
+retrieveURL(shortURL: String): (longURL: String)
+
+**requires** a shortenedURL exists with the given shortURL
+
+**effects** finds the ShortenedURL with the given shortURL and returns the LongURL associated with it
+
 ### Concept 2: Billable Hours Tracking
 
+**concept** BillableHoursTracking
+
+**purpose** automate record keeping of billable hours
+
+**principle** by having each employee mark the beginning and end of their work session, can track the total hours worked by every employee and when
+
+**state**
+**actions**
+
 ### Concept 3: Conference Room Booking
+
+**concept** ConferenceRoomBooking
+**purpose**
+**principle**
+**state**
+**actions**
