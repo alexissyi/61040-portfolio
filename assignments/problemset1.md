@@ -168,15 +168,96 @@ retrieveURL(shortURL: String): (longURL: String)
 
 **purpose** automate record keeping of billable hours
 
-**principle** by having each employee mark the beginning and end of their work session, can track the total hours worked by every employee and when
+**principle** by having each employee mark the beginning and end of their work session, can track the total hours worked by every employee for each company
 
 **state**
+
+a set of Employees with
+
+- an identifier EmployeeID
+- a MaxSessionTime
+- a set of FinishedSessions
+- a set of ActiveSessions
+
+a set of FinishedSessions with
+
+- a StartTime
+- an EndTime
+- a Description
+
+a set of ActiveSessions with
+
+- a StartTime
+- a Description
+
 **actions**
+
+createEmployee(employeeID: String, maxSessionTime: float)
+
+**requires** no Employee exists with the given employeeID
+
+**effects** create a new Employee with the given employeeID and maxSessionTime and empty sets of FinishedSessions and ActiveSessions
+
+updateMaxSessionTime(employeeID: String, maxSessionTime: float)
+
+**requires** an Employee exists with the given employeeID
+
+**effects** updates the employee's MaxSessionTime to be the given maxSessionTime
+
+startSession(employeeID: String, startTime: Time, description: String)
+
+**requires** an Employee exists with the given employeeID, that Employee has no ActiveSessions, and their most recent FinishedSession was completed at or before startTime
+
+**effects** creates a new ActiveSession with the given startTime and description
+
+endSession(employeeID: String, endTime: Time)
+
+**requires** an Employee exists with the given employeeID and that Employee has an ActiveSession with a startTime that is not more than maxSessionTime earlier than endTime
+
+**effects** takes the Employee's ActiveSession and creates a new FinishedSession with the same Description and StartTime, along with the provided endTime, and deletes the ActiveSession
 
 ### Concept 3: Conference Room Booking
 
 **concept** ConferenceRoomBooking
-**purpose**
-**principle**
+
+**purpose** track room reservations and prevent conflicts
+
+**principle** by having users create room reservations, can track which rooms are free to reserve and which ones are booked
+
 **state**
+
+a set of Rooms with
+
+- a set of Reservations
+- a MaxCapacity
+- a MinCapacity
+
+a set of Reservations with
+
+- a Room
+- a Timeslot
+- a person making the reservation ReservationHolder
+- a count of attendees Attendance
+
+a TimeSlot with
+
+- a StartTime
+- an EndTime
+
 **actions**
+
+createRoom(room: Room)
+
+**requires**
+
+**effects**
+
+reserveRoom(reservationHolder: ReservationHolder, room: Room, timeslot: TimeSlot)
+
+**requires**
+
+**effects**
+
+### Notes
+
+For Concept 2, one invariant is that there is never more than one ActiveSession per Employee, and this is preserved through all actions.
