@@ -20,6 +20,57 @@ Invariant 2 is most important. The whole point of a gift registry is so that you
 
 ## Exercise 2
 
+1. The completed state definition is below:
+
+   **state**
+   a set of Users with
+
+   - a Username
+   - a Password
+
+2. The completed actions specification is below:
+
+   **actions**
+   register (username: String, password: String): (user: User)
+   **requires** no other User with this username or this password exists
+   **effects** creates a new User with this username and password and adds it to the set of Users, then returns it
+
+   authenticate (username: String, password: String): (user: User)
+   **requires** a User with this username and password exists in the set
+   **effects** returns the User with the same username and password
+
+3. The essential invariant is that no two Users have the same Username or the same Password. This is preserved by the requirement for the register action.
+
+4. The extended concept is below:
+
+**concept** Password Authentication
+
+**purpose** limit access to known users
+
+**principle** after a user registers with a username and a password, they can authenticate with that same username and password and be treated each time as the same user
+
+**state**
+a set of Users with
+
+- a Username
+- a Password
+- a valid Email
+- a confirmation token SecretToken
+- a flag Confirmed
+
+**actions**
+register (username: String, password: String, email: String): (user: User, secretToken: String)
+**requires** no other User with this username or this password exists in the set
+**effects** generates a secret registration token and emails it to the given email, creates a new User with this username, password, email, secret token, and a default Confirmed flag set to False, then adds this new User to the set of Users and returns the User and the token
+
+confirm (username: String, secretToken: String): (user: User)
+**requires** a User with this username and secretToken exists in the set
+**effects** locates the User with the given username and secretToken, sets the User's Confirmed flag to True and returns the User
+
+authenticate (username: String, password: String): (user: User)
+**requires** a User with this username and password exists in the set
+**effects** returns the User with the same username and password
+
 ## Exercise 3
 
 ## Exercise 4
