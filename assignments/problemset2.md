@@ -1,6 +1,6 @@
 ## Concept Questions
 
-1. Contexts are for restricting the format of the strings generated. For example, you might only want English names, or you only want addresses. In the URL shortening app, the context is web URLs.
+1. Contexts are for restricting the format of the strings generated, both in type and in specifics (by tracking the previously generated strings). For the type of the string, you might only want English names, or you only want addresses. In the URL shortening app, the context is web URLs, specifically web URLs with shortURLBase as the beginning of the URL.
 
 2. The NonceGeneration concept needs to store used strings to make the generate action possible. Generating strings that haven't been generated requires some way to know which strings that have already been generated.
 
@@ -12,6 +12,22 @@ To realize this idea for the NonceGeneration concept, we would need to modify th
 
 ## Synchronization Questions
 
-1.
+1. The targetURL argument does not appear in the first sync because it is not used for the generate action. The behavior of the generate action does not depend on the value of targetURL that is passed to the shortenURL action. In the second sync however, the specific value of targetUrl is relevant to the behavior of the register action, which uses that value.
+
+2. Sometimes names can mean different things in different contexts. In this case we care to know explicitly that there are two separate entities with the same name; omitting in this context would have the effect of making the reader think that both names mean the same thing in both of their respective contexts.
+
+3. The request action is not included in the third sync because the action in the then clause does not depend on the arguments/results of the request action. In the second sync, the then clause depends on two arguments from the request action, and in the first sync, the then clause depends on one argument from the request action.
+
+4. In the first sync, the generate action would be called with "bit.ly" as the argument to the context parameter, and there would be no shortUrlBase argument to the request action. In the second sync, shortUrlBase would be removed as a parameter.
+
+5. This sync deletes the corresponding URL pair when the short URL expires:
+
+**sync** delete
+
+**when**
+ExpiringResource.expireResource(): (resource)
+
+**then**
+UrlShortening.delete(shortUrl: resource)
 
 ## Extending the Design
