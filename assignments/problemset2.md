@@ -139,6 +139,16 @@
 
     **then**
 
-    ResourceOwner.verifyOwnership(resource: shorUrl, user: u)
+    ResourceOwner.verifyOwnership(resource: shortUrl, user: u)
 
     CountAccesses.viewAccesses(resource: shortUrl)
+
+3.  - Allowing users to choose their own short URLs: this is undesirable, mainly because a computer is better able to track previously generated URLs than any person. A person may try many URLs before finally stumbling upon one that is not already generated.
+
+    - Using the "word as nonce" strategy to generate more memorable short URLs: this can be realized by specifying the context for the generate action to always be dictionary words in the NonceGeneration syncs
+
+    - Including the target URL in analytics, so that lookups of different short URLs can be grouped together when they refer to the same target URL: this can be realized by updating the UrlShortening concept to support the identification of all short URLs associated with a target URL, and then updating the CountAccesses concept to be synced using target URLs rather than short URLs
+
+    - Generate short URLs that are not easily guessed: this can be achieved by specifying the context for the generate action to be strings with some kind of rules to increase complexity in the NonceGeneration syncs, i.e. the strings should have symbols that aren't letters or numbers or there should be no sequences of characters that are dictionary words in the strings
+
+    - Supporting reporting of analytics to creators of short URLs who have not registered as user: to realize this, we would need to remove the ResourceOwner concept because this would mean owners are meaningless. We would update the viewAccesses sync to not verify ownership.
