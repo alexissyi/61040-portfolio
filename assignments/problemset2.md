@@ -32,33 +32,34 @@
 
 ## Extending the Design
 
-### Concept 1: CountAccesses
+1.  ### Concept 1: CountAccesses
 
-**concept** CountAccesses \[Resource\]
+    **concept** CountAccesses \[Resource\]
 
-**purpose** count the number of times a resource is accessed
+    **purpose** count the number of times a resource is accessed
 
-**principle** each time a resource is accessed, its accesses count goes up
+    **principle** each time a resource is accessed, its accesses count goes up
 
-**state**
+    **state**
 
-a set of Resources with
-a count Accesses
+    a set of Resources with
 
-**actions**
+        a count Accesses
 
-trackResource (resource: Resource)
+    **actions**
 
-**effect** adds this resource to our set and sets Accesses for this resource to 0
+    trackResource (resource: Resource)
 
-recordAccess (resource: Resource)
+    **effect** adds this resource to our set and sets Accesses for this resource to 0
 
-**effect** increases Accesses by 1
+    recordAccess (resource: Resource)
 
-### Concept 2: ResourceOwner
+    **effect** increases Accesses by 1
 
-**concept** ResourceOwner
+    ### Concept 2: ResourceOwner
 
-### Concept 3: ViewData
+    **concept** ResourceOwner
 
-**concept** ViewData
+    ### Concept 3: ViewData
+
+    **concept** ViewData
