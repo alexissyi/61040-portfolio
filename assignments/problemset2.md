@@ -45,7 +45,7 @@
 
     a set of Resources with
 
-        a count Accesses
+    a count Accesses
 
     **actions**
 
@@ -77,7 +77,7 @@
 
     a set of Resources with
 
-        a user Owner
+    a user Owner
 
     **actions**
 
@@ -99,19 +99,19 @@
 
     **when**
 
-        Request.shortenUrl()
+    Request.shortenUrl()
 
-        UrlShortening.register(): (shortUrl)
+    UrlShortening.register(): (shortUrl)
 
     **where**
 
-        Request: user u is the User who triggered shortenUrl
+    Request: user u is the User who triggered shortenUrl
 
     **then**
 
-        ResourceOwner.giveOwnership(resource: shortUrl, user: u)
+    ResourceOwner.giveOwnership(resource: shortUrl, user: u)
 
-        CountAccesses.trackResource(resource: shortUrl)
+    CountAccesses.trackResource(resource: shortUrl)
 
     ### Sync 2: recordAccess
 
@@ -119,11 +119,11 @@
 
     **when**
 
-        UrlShortening.lookup(shortUrl): ()
+    UrlShortening.lookup(shortUrl): ()
 
     **then**
 
-        CountAccesses.recordAccess(shortUrl)
+    CountAccesses.recordAccess(shortUrl)
 
     ### Sync 3: verifyOwnership and viewAccesses
 
@@ -131,14 +131,14 @@
 
     **when**
 
-        Request.viewAccessesToShortUrl(shortUrl)
+    Request.viewAccessesToShortUrl(shortUrl)
 
     **where**
 
-        Request: user u is the user who triggered viewAccessesToShortUrl
+    Request: user u is the user who triggered viewAccessesToShortUrl
 
     **then**
 
-        ResourceOwner.verifyOwnership(resource: shorUrl, user: u)
+    ResourceOwner.verifyOwnership(resource: shorUrl, user: u)
 
-        CountAccesses.viewAccesses(resource: shortUrl)
+    CountAccesses.viewAccesses(resource: shortUrl)
