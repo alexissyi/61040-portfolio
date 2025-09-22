@@ -54,12 +54,40 @@
 
     recordAccess (resource: Resource)
 
+    **requires** this resource is in our set
+
     **effect** increases Accesses by 1
+
+    viewAccess (resource: Resource): (numAccesses: int)
+
+    **requires** this resource is in our set
+
+    **effect** returns resource.Accesses
 
     ### Concept 2: ResourceOwner
 
-    **concept** ResourceOwner
+    **concept** ResourceOwner \[Resource, User\]
 
-    ### Concept 3: ViewData
+    **purpose** to identify one user to whom each resource belongs for special privileges
 
-    **concept** ViewData
+    **principle** each resource is associated with a user as an owner
+
+    **state**
+
+    a set of Resources with
+
+        a user Owner
+
+    **actions**
+
+    giveOwnership(resource: Resource, user: User)
+
+    **requires** this Resource does not already have an Owner, and this user is not already an Owner for a different Resource
+
+    **effect** adds this user as the Owner of this Resource in our set
+
+    verifyOwnership(resource: Resource, user: User)
+
+    **requires** this User is the Owner for this Resource
+
+    **effect** nothing
