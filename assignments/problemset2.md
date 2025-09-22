@@ -25,6 +25,7 @@
    **sync** delete
 
    **when**
+
    ExpiringResource.expireResource(): (resource)
 
    **then**
@@ -58,7 +59,7 @@
 
     **effect** increases Accesses by 1
 
-    viewAccess (resource: Resource): (numAccesses: int)
+    viewAccesses (resource: Resource): (numAccesses: int)
 
     **requires** this resource is in our set
 
@@ -91,3 +92,53 @@
     **requires** this User is the Owner for this Resource
 
     **effect** nothing
+
+2.  ### Sync 1: trackResource and giveOwnership
+
+    **sync** trackResource and giveOwnership
+
+    **when**
+
+        Request.shortenUrl()
+
+        UrlShortening.register(): (shortUrl)
+
+    **where**
+
+        Request: user u is the User who triggered shortenUrl
+
+    **then**
+
+        ResourceOwner.giveOwnership(resource: shortUrl, user: u)
+
+        CountAccesses.trackResource(resource: shortUrl)
+
+    ### Sync 2: recordAccess
+
+    **sync** recordAccess
+
+    **when**
+
+        UrlShortening.lookup(shortUrl): ()
+
+    **then**
+
+        CountAccesses.recordAccess(shortUrl)
+
+    ### Sync 3: verifyOwnership and viewAccesses
+
+    **sync** verifyOwnership and viewAccesses
+
+    **when**
+
+        Request.viewAccessesToShortUrl(shortUrl)
+
+    **where**
+
+        Request: user u is the user who triggered viewAccessesToShortUrl
+
+    **then**
+
+        ResourceOwner.verifyOwnership(resource: shorUrl, user: u)
+
+        CountAccesses.viewAccesses(resource: shortUrl)
