@@ -6,7 +6,7 @@
 
 ### Problem
 
-**[WILG Meal Plan Cooking Assignments]** Everything outlined above is done manually and across various spreadsheets, forms and even random Slack threads (WILG communication occurs via Slack). In particular, member cooking availabilities are collected via a form and then one of the foodstuds manually assigns cooks based on the calendar. This often requires multiple revisions since people's availabilities can change.
+**[WILG Meal Plan Cooking Assignments]** Everything outlined above is done manually and across various spreadsheets, forms and even random Slack threads (WILG communication occurs via Slack). In particular, member cooking availabilities and preferences are collected via a form and then one of the foodstuds manually assigns cooks based on the calendar. This often requires multiple revisions since people's availabilities can change.
 
 ### Stakeholder List
 
@@ -32,9 +32,25 @@
 
 ### Name
 
+CookScheduler
+
 ### Motivation
 
+CookScheduler automates the assignment of cooks to different days in a communal cooking calendar in accordance with cooks' self-reported availability and cooking preferences.
+
 ### Key Features
+
+#### Preference Form
+
+Cooks will be able to upload their cooking preferences (distinct from availability) in a form available on the site. This form will allow them to specify whether they are willing to cook on their own and/or cook with another person; if they are willing to be main cook if they cook with someone else; whether they are willing to cook meat; if there's anyone they want to cook with; how many times they want to cook in the month. The form will lock after a certain deadline, at which point it can't be edited.
+
+#### Availability Form
+
+This form will have a calendar UI with clickable squares that allows cooks to mark themselves as available to cook on that day. The form will default to no availability on any day. The form will lock after a cetain deadline, at which point it can't be edited.
+
+#### Editable Cooking Calendar
+
+This calendar will have clickable squares that allows the foodstud to see who is available. After the form deadline, cooking assignments will be automatically generated and displayed on this calendar, but the foodstuds will be able to edit the schedule and change the assignments if they want. Cooks will be able to view the calendar but not edit it.
 
 ## Concept Design
 
