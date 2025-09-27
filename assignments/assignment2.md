@@ -71,7 +71,9 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
    &nbsp; a set of Responses
 
    a set of Responses with
+
    &nbsp; a User
+
    &nbsp; a string ResponseText
 
    a time Deadline
