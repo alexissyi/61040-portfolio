@@ -95,9 +95,12 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
    **state**
 
    a set of Users with
-   a boolean CanSolo
-   a boolean CanLead
-   a boolean CanAssist
+
+   &nbsp a boolean CanSolo
+
+   &nbsp a boolean CanLead
+
+   &nbsp a boolean CanAssist
 
    **actions**
 
