@@ -42,7 +42,7 @@ CookScheduler automates the assignment of cooks to different days in a communal 
 
 #### Preference Form
 
-Cooks will be able to upload their cooking preferences (distinct from availability) in a form available on the site. This form will allow them to specify whether they are willing to cook on their own and/or cook with another person; if they are willing to be main cook if they cook with someone else; whether they are willing to cook meat; if there's anyone they want to cook with; how many times they want to cook in the month. The form will lock after a certain deadline, at which point it can't be edited.
+Cooks will be able to upload their cooking preferences (distinct from availability) in a form available on the site. This form will allow them to specify whether they are willing to cook on their own and/or cook with another person; if they are willing to be main cook if they cook with someone else; if there's anyone they want to cook with; how many times they want to cook in the month. The form will lock after a certain deadline, at which point it can't be edited.
 
 #### Availability Form
 
@@ -50,11 +50,117 @@ This form will have a calendar UI with clickable squares that allows cooks to ma
 
 #### Editable Cooking Calendar
 
-This calendar will have clickable squares that allows the foodstud to see who is available and their preferences on each day. After the form deadline, cooking assignments will be automatically generated and displayed on this calendar, but the foodstuds will be able to edit the schedule and change the assignments if they want. Cooks will be able to view the calendar but not edit it.
+This calendar will display cooking assignments in a calendar UI. This UI will also have clickable date squares that allows the foodstud to see who is available and their preferences on each day. After the form deadline, cooking assignments will be automatically generated and displayed on this calendar, but the foodstuds will be able to edit the schedule and change the assignments if they want. Cooks will be able to view the calendar but not edit it.
 
 ## Concept Design
 
 ### Concept Specifications
+
+1. **concept** TimeSensitiveForm\[User\]
+
+   **purpose** take in user input for a set of questions
+
+   **principle** after the form deadline, the responses to the form can be used to guide decisionmaking
+
+   **state**
+
+   a set of Questions with
+   a string QuestionText
+   a set of Responses
+
+   a set of Responses with
+   a User
+   a string ResponseText
+
+   a time Deadline
+
+   **actions**
+
+   submitResponse(user: User, question: Question, responseText: String)
+
+   addQuestion(question: Question)
+
+   deleteQuestion(question: Question)
+
+   deleteResponse(user: User, question: Question)
+
+   **system** lockForm()
+
+2. **concept** PreferredRoles\[User\]
+
+   **purpose** collect cooking role preferences for scheduling
+
+   **principle** after collecting user preferences, cooking assignments can be made that only assign people one of their preferred roles each day they cook
+
+   **state**
+
+   a set of Users with
+   a boolean CanSolo
+   a boolean CanLead
+   a boolean CanAssist
+
+   **actions**
+
+   upload(user: User, canSolo: boolean, canLead: boolean, canAssist: boolean)
+
+   updateSolo(user: User, canSolo: boolean)
+
+   updateLead(user: User, canLead: boolean)
+
+   updateAssist(user: User, canAssist: boolean)
+
+3. **concept** UserAvailabilities\[User, Month, Date\]
+
+   **purpose** collect User cooking availability for scheduling
+
+   **principle** after collecting user availability, cooking assignments can be created that only assigns cooks to days they are available
+
+   **state**
+
+   a Month
+
+   a set of Users with
+   a set of dates AvailableDates
+
+   **actions**
+
+   addAvailability(user: User, date: Date)
+
+   removeAvailability(user: User, date: Date)
+
+4. **concept** CookingAssignments\[UserAvailabilities, UserPreferences, User\]
+
+   **purpose** track cooking assignments for the month so we know who cooks when
+
+   **principle** after user availabilities and user preferences are uploaded, can automatically generate a set of cooking assignments, which can then be edited by foodstuds
+
+   **state**
+
+   a Month
+
+   a set of Users
+
+   a UserAvailabilities
+
+   a PreferredRoles
+
+   a set of dates CookingDates with
+   a LeadCook
+   an AssistantCook (optional)
+
+   **actions**
+
+   assignCook (user: User, date: Date, role: String)
+
+   removeCook (user: User, date: Date)
+
+   uploadPreferences (preferredRoles: PreferredRoles)
+
+   uploadAvailabilities (userAvailabilities: UserAvailabilities)
+
+   generateAssignments()
+
+   validate()
 
 ### Synchronizations
 
