@@ -65,12 +65,14 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
    **state**
 
    a set of Questions with
-   a string QuestionText
-   a set of Responses
+
+   &nbsp; a string QuestionText
+
+   &nbsp; a set of Responses
 
    a set of Responses with
-   a User
-   a string ResponseText
+   &nbsp; a User
+   &nbsp; a string ResponseText
 
    a time Deadline
 
@@ -96,11 +98,11 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
    a set of Users with
 
-   &nbsp a boolean CanSolo
+   &nbsp; a boolean CanSolo
 
-   &nbsp a boolean CanLead
+   &nbsp; a boolean CanLead
 
-   &nbsp a boolean CanAssist
+   &nbsp; a boolean CanAssist
 
    **actions**
 
