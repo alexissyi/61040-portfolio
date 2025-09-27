@@ -50,7 +50,7 @@ This form will have a calendar UI with clickable squares that allows cooks to ma
 
 #### Editable Cooking Calendar
 
-This calendar will have clickable squares that allows the foodstud to see who is available. After the form deadline, cooking assignments will be automatically generated and displayed on this calendar, but the foodstuds will be able to edit the schedule and change the assignments if they want. Cooks will be able to view the calendar but not edit it.
+This calendar will have clickable squares that allows the foodstud to see who is available and their preferences on each day. After the form deadline, cooking assignments will be automatically generated and displayed on this calendar, but the foodstuds will be able to edit the schedule and change the assignments if they want. Cooks will be able to view the calendar but not edit it.
 
 ## Concept Design
 
