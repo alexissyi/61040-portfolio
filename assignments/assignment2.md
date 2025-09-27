@@ -66,15 +66,15 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
    a set of Questions with
 
-   &nbsp; a string QuestionText
+   &ensp; a string QuestionText
 
-   &nbsp; a set of Responses
+   &ensp; a set of Responses
 
    a set of Responses with
 
-   &nbsp; a User
+   &ensp; a User
 
-   &nbsp; a string ResponseText
+   &ensp; a string ResponseText
 
    a time Deadline
 
@@ -100,11 +100,11 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
    a set of Users with
 
-   &nbsp; a boolean CanSolo
+   &ensp; a boolean CanSolo
 
-   &nbsp; a boolean CanLead
+   &ensp; a boolean CanLead
 
-   &nbsp; a boolean CanAssist
+   &ensp; a boolean CanAssist
 
    **actions**
 
@@ -127,7 +127,7 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
    a Month
 
    a set of Users with
-   a set of dates AvailableDates
+   &ensp; a set of dates AvailableDates
 
    **actions**
 
@@ -152,8 +152,10 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
    a PreferredRoles
 
    a set of dates CookingDates with
-   a LeadCook
-   an AssistantCook (optional)
+
+   &ensp; a LeadCook
+
+   &ensp; an AssistantCook (optional)
 
    **actions**
 
