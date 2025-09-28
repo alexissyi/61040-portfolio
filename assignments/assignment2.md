@@ -56,11 +56,11 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
 ### Concept Specifications
 
-1. **concept** TimeSensitiveForm\[User\]
+1. **concept** Form\[User\]
 
    **purpose** take in user input for a set of questions
 
-   **principle** after the form deadline, the responses to the form can be used to guide decisionmaking
+   **principle** after users have filled out the form, the responses to the form can be used to guide decisionmaking
 
    **state**
 
@@ -76,19 +76,41 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
    &ensp; a string ResponseText
 
-   a time Deadline
+   a boolean Open
 
    **actions**
 
    submitResponse(user: User, question: Question, responseText: String)
 
-   addQuestion(question: Question)
+   **requires** question exists in the set of Questions and Open is True
+
+   **effects** creates a new Response with user and responseText and adds it to the set of Responses for question
+
+   addQuestion(questionText: String)
+
+   **requires** no Question with the same QuestionText exists in the set of Questions and Open is True
+
+   **effects** creates a new question with questionText and an empty set of Responses and adds it to the set of Questions
 
    deleteQuestion(question: Question)
 
+   **requires** question exists in the set of Questions and its set of Responses is empty and Open is True
+
+   **effects** removes this question from Questions
+
    deleteResponse(user: User, question: Question)
 
-   **system** lockForm()
+   lockForm()
+
+   **requires** Open is True
+
+   **effects** sets Open to False
+
+   openForm()
+
+   **requires** Open is False and there is at least one question in Questions
+
+   **effects** sets Open to True
 
 2. **concept** PreferredRoles\[User\]
 
@@ -106,15 +128,39 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
    &ensp; a boolean CanAssist
 
+   &ensp; an int MaxCookingDays
+
    **actions**
 
-   upload(user: User, canSolo: boolean, canLead: boolean, canAssist: boolean)
+   upload(user: User, canSolo: boolean, canLead: boolean, canAssist: boolean, maxCookingDays: int)
+
+   **requires** user is not the set of Users, maxCookingDays is nonnegative
+
+   **effects** adds User to the set with canSolo, canLead, canAssist and maxCookingDays
 
    updateSolo(user: User, canSolo: boolean)
 
+   **requires** user is in the set of Users
+
+   **effects** updates user's CanSolo boolean to canSolo
+
    updateLead(user: User, canLead: boolean)
 
+   **requires** user is in the set of Users
+
+   **effects** updates user's CanLead boolean to canLead
+
    updateAssist(user: User, canAssist: boolean)
+
+   **requires** user is in the set of Users
+
+   **effects** updates user's CanAssist boolean to canAssist
+
+   updateMaxCookingDays(user: User, maxCookingDays: int)
+
+   **requires** user is in the set of Users
+
+   **effects** updates user's MaxCookingDays to maxCookingDays
 
 3. **concept** UserAvailabilities\[User, Month, Date\]
 
@@ -127,13 +173,28 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
    a Month
 
    a set of Users with
+
    &ensp; a set of dates AvailableDates
 
    **actions**
 
+   upload(user: User)
+
+   **requires** user is not in the set of Users
+
+   **effects** adds this user to the set of Users and sets its AvailableDates to an empty set
+
    addAvailability(user: User, date: Date)
 
+   **requires** user is in the set of Users and date is not in user's AvailableDates
+
+   **effects** adds date to user's AvailableDates
+
    removeAvailability(user: User, date: Date)
+
+   **requires** user is in the set of Users and date is in user's AvailableDates
+
+   **effects** removes date from user's AvailableDates
 
 4. **concept** CookingAssignments\[UserAvailabilities, UserPreferences, User\]
 
@@ -145,33 +206,75 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
    a Month
 
+   a set of dates CookingDates
+
    a set of Users
 
-   a UserAvailabilities
+   a UserAvailabilities Availabilities
 
-   a PreferredRoles
+   a PreferredRoles Preferences
 
-   a set of dates CookingDates with
+   a set of Assignments with
 
-   &ensp; a LeadCook
+   &ensp; a date CookingDate
 
-   &ensp; an AssistantCook (optional)
+   &ensp; a Lead
+
+   &ensp; an Assistant (optional)
 
    **actions**
 
-   assignCook (user: User, date: Date, role: String)
+   setCookingDate (date: Date):
 
-   removeCook (user: User, date: Date)
+   **requires** date is not in CookingDates and date is in Month
+
+   **effects** adds date to CookingDates
+
+   assignLead (user: User, date: Date)
+
+   **requires** date is in CookingDates; user is in the set of Users
+
+   **effects** creates a new Assignment with date and Lead set to user if there is no existing Assignment for this date, or updates an existing Assignment if there already is an Assignment for this date
+
+   assignAssistant (user: User, date: Date)
+
+   **requires** date is in CookingDates; user is in the set of Users; there is already an Assignment with this date in the set of Assignments
+
+   **effects** sets Assistant in the existing Assignment for this date to be user
+
+   removeAssignment (date: Date)
+
+   **requires** there is an Assignment with this date in the set of Assignments
+
+   **effects** removes this Assignment from the set of Assignments
 
    uploadPreferences (preferredRoles: PreferredRoles)
 
+   **requires** all Users in preferredRoles are in the set of Users
+
+   **effects** sets Preferences to preferredRoles
+
    uploadAvailabilities (userAvailabilities: UserAvailabilities)
+
+   **requires** all Users in userAvailabilities are in the set of Users
+
+   **effects** sets Availabilities to userAvailabilities
 
    generateAssignments()
 
-   validate()
+   **requires** user is in the set of Users for both Availabilities and Preferences
+
+   **effects** generates an assignment of Users to the CookingDates that violates no constraints in Availabilities or Preferences
+
+   validate(): boolean
+
+   **requires** no constraints in Preferences or Availabilities are violated across the Assignments
+
+   **effects** returns True
 
 ### Synchronizations
+
+### Brief Note
 
 ## UI Sketches
 
