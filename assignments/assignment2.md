@@ -114,7 +114,7 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
 2. **concept** PreferredRoles\[User\]
 
-   **purpose** collect cooking role preferences for scheduling
+   **purpose** store cooking role preferences for scheduling
 
    **principle** after collecting user preferences, cooking assignments can be made that only assign people one of their preferred roles each day they cook
 
@@ -132,25 +132,25 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
    **actions**
 
-   upload(user: User, canSolo: boolean, canLead: boolean, canAssist: boolean, maxCookingDays: int)
+   upload(user: User)
 
-   **requires** user is not the set of Users, maxCookingDays is nonnegative
+   **requires** user is not the set of Users
 
-   **effects** adds User to the set with canSolo, canLead, canAssist and maxCookingDays
+   **effects** adds User to the set with canSolo, canLead, canAssist defaulting to False and maxCookingDays defaulting to 0
 
-   updateSolo(user: User, canSolo: boolean)
+   update(user: User, canSolo: boolean)
 
    **requires** user is in the set of Users
 
    **effects** updates user's CanSolo boolean to canSolo
 
-   updateLead(user: User, canLead: boolean)
+   update(user: User, canLead: boolean)
 
    **requires** user is in the set of Users
 
    **effects** updates user's CanLead boolean to canLead
 
-   updateAssist(user: User, canAssist: boolean)
+   update(user: User, canAssist: boolean)
 
    **requires** user is in the set of Users
 
@@ -158,13 +158,13 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
    updateMaxCookingDays(user: User, maxCookingDays: int)
 
-   **requires** user is in the set of Users
+   **requires** user is in the set of Users, maxCookingDays is nonnegative
 
    **effects** updates user's MaxCookingDays to maxCookingDays
 
 3. **concept** UserAvailabilities\[User, Month, Date\]
 
-   **purpose** collect User cooking availability for scheduling
+   **purpose** store User cooking availability for scheduling
 
    **principle** after collecting user availability, cooking assignments can be created that only assigns cooks to days they are available
 
@@ -224,37 +224,37 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
    **actions**
 
-   setCookingDate (date: Date):
+   addCookingDate(date: Date):
 
    **requires** date is not in CookingDates and date is in Month
 
    **effects** adds date to CookingDates
 
-   assignLead (user: User, date: Date)
+   assignLead(user: User, date: Date)
 
    **requires** date is in CookingDates; user is in the set of Users
 
    **effects** creates a new Assignment with date and Lead set to user if there is no existing Assignment for this date, or updates an existing Assignment if there already is an Assignment for this date
 
-   assignAssistant (user: User, date: Date)
+   assignAssistant(user: User, date: Date)
 
    **requires** date is in CookingDates; user is in the set of Users; there is already an Assignment with this date in the set of Assignments
 
    **effects** sets Assistant in the existing Assignment for this date to be user
 
-   removeAssignment (date: Date)
+   removeAssignment(date: Date)
 
    **requires** there is an Assignment with this date in the set of Assignments
 
    **effects** removes this Assignment from the set of Assignments
 
-   uploadPreferences (preferredRoles: PreferredRoles)
+   upload(preferredRoles: PreferredRoles)
 
    **requires** all Users in preferredRoles are in the set of Users
 
    **effects** sets Preferences to preferredRoles
 
-   uploadAvailabilities (userAvailabilities: UserAvailabilities)
+   upload(userAvailabilities: UserAvailabilities)
 
    **requires** all Users in userAvailabilities are in the set of Users
 
@@ -273,6 +273,38 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
    **effects** returns True
 
 ### Synchronizations
+
+1. **sync** validate
+
+   **when**
+
+   CookingAssignments.assignLead(user, date)
+
+   **then**
+
+   CookingAssignments.validate()
+
+2. **sync** upload
+
+   **when**
+
+   PreferredRoles.update(user, canSolo)
+
+   **then**
+
+   CookingAssignments.upload(preferredRoles)
+
+3. **sync** update
+
+   **when**
+
+   Form.submitResponse(user, question, responseText)
+
+   **where** question is asking about whether they can solo
+
+   **then**
+
+   PreferredRoles.update(user, canSolo: responseText)
 
 ### Brief Note
 
