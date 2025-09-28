@@ -74,13 +74,13 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
    &ensp; a User
 
-   &ensp; a string ResponseText
+   &ensp; a String or Boolean ResponseContent
 
-   a boolean Open
+   a Boolean Open
 
    **actions**
 
-   submitResponse(user: User, question: Question, responseText: String)
+   submitResponse(user: User, question: Question, responseContent: String or Boolean)
 
    **requires** question exists in the set of Questions and Open is True
 
@@ -298,15 +298,17 @@ This calendar will display cooking assignments in a calendar UI. This UI will al
 
    **when**
 
-   Form.submitResponse(user, question, responseText)
+   Form.submitResponse(user, question, responseContent)
 
-   **where** question is asking about whether they can solo
+   **where** question is asking about whether they can solo, and responseContent is a Boolean
 
    **then**
 
-   PreferredRoles.update(user, canSolo: responseText)
+   PreferredRoles.update(user, canSolo: responseContent)
 
 ### Brief Note
+
+The Form concept covers how info from users will be collected and stored. There are two types of information we are interested in from users, which are encapsulated in the PreferredRoles and UserAvailability concepts. Finally, the CookingAssignment concept stores the info this product is made for, which is the assignment of members to different cooking days in accordance with preferences and availability.
 
 ## UI Sketches
 
