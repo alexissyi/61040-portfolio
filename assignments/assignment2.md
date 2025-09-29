@@ -312,4 +312,9 @@ The Form concept covers how info from users will be collected and stored. There 
 
 ## UI Sketches
 
+![home page](assets/homepage.JPG)
+![assignments page](assets/assignmentspage.JPG)
+![preferences page](assets/preferencespage.JPG)
+![availability page](assets/availabilitypage.JPG)
+
 ## User Journey
